@@ -17,6 +17,7 @@ class ScraperController extends Controller
         $items_per_page = 96;
         $total_pages = (int)($total_items / $items_per_page);
 
+        //set loop for number of pages
         for ($i=0; $i < 10; $i++) { 
             $crawler = $browser->request('GET', 'https://www.saq.com/fr/produits/vin?p='.($i+1).'&product_list_limit='.$items_per_page);
             
