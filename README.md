@@ -2,8 +2,8 @@
 
 ## installation and requirement
 
-run-> *composer require symfony/browser-kit*
-run-> *composer require symfony/http-client*
+run-> *composer require symfony/browser-kit*  
+run-> *composer require symfony/http-client*  
 
 > ### from clone
 > * run-> composer update
