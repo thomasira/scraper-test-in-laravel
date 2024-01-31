@@ -9,10 +9,12 @@ use App\Models\Vin;
 
 class ScraperController extends Controller
 {
-    public $inventory = [];
 
 
     public function index () {
+
+        $vin = new Vin;
+        $vin::truncate();
 
         // remove php limit time for execution time limit
         set_time_limit(0);
@@ -27,9 +29,10 @@ class ScraperController extends Controller
         // le nombre d'items par page est trouvé sur le site saq.com. Les choix sont: 24, 48, 96
         $items_per_page = 96;
         $total_pages = (int)($total_items / $items_per_page) + 1;
+        print_r($total_pages);
 
         // démarrer la boucle pour chaque page. Inscrire $total_pages en condition pour avoir tout les résultats
-        for ($i=0; $i < 2; $i++) { 
+        /* for ($i=0; $i < $total_pages; $i++) { 
 
             // acceder à la page
             $crawler = $browser
@@ -58,7 +61,6 @@ class ScraperController extends Controller
                 $wine['name'] = $node->filter('.product-item-link')->text();
     
                 // insérer le vin dans l'inventaire, l'étape pour envoyer vers la db peut être fait ici ou sinon envoyer en batch à la fin de la boucle
-
                 $vin = new Vin;
                 $vin->create([
                     'name' => $wine['name'],
@@ -69,10 +71,8 @@ class ScraperController extends Controller
                     'code_saq' => $wine['code_saq'],
                     'photo' => $wine['photo'],
                 ]);
-                $this->inventory[] = $wine;
             });
-        }
-        echo '<pre>';
-        print_r($this->inventory);
+        } */
+        return $total_pages;
     }
 }
